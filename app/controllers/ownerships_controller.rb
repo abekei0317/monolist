@@ -12,7 +12,7 @@ class OwnershipsController < ApplicationController
     if @item.new_record?
       begin
         # TODO 商品情報の取得 Amazon::Ecs.item_lookupを用いてください
-        response = {}
+        response = Amazon::Ecs.item_lookup(params[:asin])
       rescue Amazon::RequestError => e
         return render :js => "alert('#{e.message}')"
       end
@@ -30,7 +30,7 @@ class OwnershipsController < ApplicationController
     # TODO ユーザにwant or haveを設定する
     # params[:type]の値ににHaveボタンが押された時には「Have」,
     # Wantボタンがされた時には「Want」が設定されています。
-    
+
 
   end
 
@@ -41,5 +41,6 @@ class OwnershipsController < ApplicationController
     # params[:type]の値ににHavedボタンが押された時には「Have」,
     # Wantedボタンがされた時には「Want」が設定されています。
 
+    
   end
 end
